@@ -1,18 +1,23 @@
+from typing import List
+
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        ans=set()
         nums.sort()
-        n=len(nums)
-        for i in range(n-2):
-            j=i+1
-            k=n-1
-            while j<k:
-                temp=nums[i]+nums[j]+nums[k]
-                if temp==0:
-                    ans.add((nums[i],nums[j],nums[k]))
-                    j+=1
-                elif temp>0:
-                    k-=1
+        output = set()
+        
+        for i in range(len(nums) - 2):
+            l, r = i + 1, len(nums) - 1
+            while l < r:
+                out_set = (nums[i], nums[l], nums[r])
+                temp_sum = sum(out_set)
+                
+                if temp_sum == 0:
+                    output.add(out_set)
+                    l += 1
+                    r -= 1  # Move both pointers to find other unique triplets
+                elif temp_sum > 0:
+                    r -= 1
                 else:
-                    j+=1
-        return [list(triplet) for triplet in ans]
+                    l += 1
+                    
+        return [list(triplet) for triplet in output]
