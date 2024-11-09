@@ -14,7 +14,7 @@ class Solution:
                 if temp_sum == 0:
                     output.add(out_set)
                     l += 1
-                    r -= 1  # Move both pointers to find other unique triplets
+                    r -= 1
                 elif temp_sum > 0:
                     r -= 1
                 else:
